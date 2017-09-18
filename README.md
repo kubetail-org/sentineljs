@@ -6,7 +6,7 @@ SentinelJS is a tiny JS library that lets you detect new DOM nodes using CSS sel
 
 ## Introduction
 
-SentinelJS is a tiny JS library that makes it easy to set up watch functions that will notify you anytime a new node is added to the DOM. Using SentinelJS you can create a Shaddow DOM-like experience where you can define interactive components using purely HTML.
+SentinelJS is a tiny JS library that makes it easy to set up watch functions that will notify you anytime a new node is added to the DOM. Using SentinelJS you can create a Shaddow DOM-like experience where you can define interactive components using pure HTML.
 
 The latest version of SentinelJS can be found in the `dist/` directory in this repository:
  * [sentinel.js](https://raw.githubusercontent.com/muicss/sentineljs/master/dist/sentinel.js)
@@ -26,6 +26,8 @@ sentinel.on('my-awesome-component', function(el) {
   el.innerHTML = 'The sentinel is always watching.';
 });
 ```
+
+SentinelJS is 682 bytes (minified + gzipped).
 
 ## Quickstart
 
@@ -55,6 +57,8 @@ sentinel.on('my-awesome-component', function(el) {
 </html>
 ```
 
+[View Demo &raquo;](https://jsfiddle.net/muicss/rbqLbjzf/)
+
 ## Browser Support
 
  * IE10+
@@ -71,15 +75,23 @@ sentinel.on('my-awesome-component', function(el) {
 
 #### on(cssSelectors, callbackFn)
 
-Use the `on()` method to set up a watch for new DOM nodes.
- 
  * `cssSelectors` - A single selector string or an array
  * `callbackFn` - The callback function
 
+Use the `on()` method to set up a watch for new DOM nodes:
+ 
 ```javascript
-var sentinel = require('sentinel-js');
-
 sentinel.on(['.my-div1', '.my-div2'], function(el) {
+  // add an input box
+  var inputEl = document.createElement('input');
+  el.appendChild(inputEl);
+});
+```
+
+You can also use single css selector strings:
+
+```javascript
+sentinel.on('.my-div', function(el) {
   // add an input box
   var inputEl = document.createElement('input');
   el.appendChild(inputEl);
@@ -88,14 +100,12 @@ sentinel.on(['.my-div1', '.my-div2'], function(el) {
 
 #### off(cssSelectors[, callbackFn])
 
-Use the `off()` method to remove a watch. If `callbackFn` is emtpy, all watches for the given cssSelector will be removed.
- 
  * `cssSelectors` - A single selector string or an array
  * `callbackFn` - The callback function you want to remove the watch for (optional)
 
+Use the `off()` method to remove a watch callback:
+ 
 ```javascript
-var sentinel = require('sentinel-js');
-
 function callbackFn() {
   // add an input box
   var inputEl = document.createElement('input');
@@ -109,9 +119,28 @@ sentinel.on('.my-div', callbackFn);
 sentinel.off('.my-div', callbackFn);
 ```
 
+To remove all callbacks you can leave the `callbackFn` argument blank:
+```javascript
+// add multiple callbacks
+sentinel.on('.my-div', function fn1(el) {});
+sentinel.on('.my-div', function fn2(el) {});
+
+// remove all callbacks
+sentinel.off('.my-div');
+```
+
 #### reset()
 
-The `reset()` method will remove all watches and callbacks from the sentinel library.
+The `reset()` method will remove all watches and callbacks from the sentinel library:
+
+```javascript
+// add multiple callbacks
+sentinel.on('.my-div1', function fn1(el) {});
+sentinel.on('.my-div2', function fn2(el) {});
+
+// remove all watches and callbacks
+sentinel.reset();
+```
 
 ### Async Loading
 
