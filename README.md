@@ -55,6 +55,8 @@ sentinel.on('my-awesome-component', function(el) {
 </html>
 ```
 
+[Demo &raquo;](https://jsfiddle.net/muicss/rbqLbjzf/)
+
 ## Browser Support
 
  * IE10+
