@@ -88,28 +88,26 @@ SentinelJS is 682 bytes (minified + gzipped).
 ```
 on(cssSelectors, callbackFn)
 
- * cssSelectors {Array or String} - A single selector string or an array
- * callbackFn {Function} - The callback function
-```
+  * cssSelectors {Array or String} - A single selector string or an array
+  * callbackFn {Function} - The callback function
+
+Examples:
 
 Use the `on()` method to set up a watch for new DOM nodes:
  
-```javascript
-sentinel.on(['.my-div1', '.my-div2'], function(el) {
-  // add an input box
-  var inputEl = document.createElement('input');
-  el.appendChild(inputEl);
-});
-```
+  sentinel.on(['.my-div1', '.my-div2'], function(el) {
+    // add an input box
+    var inputEl = document.createElement('input');
+    el.appendChild(inputEl);
+  });
 
-You can also use single css selector strings:
+Use single css selector strings:
 
-```javascript
-sentinel.on('.my-div', function(el) {
-  // add an input box
-  var inputEl = document.createElement('input');
-  el.appendChild(inputEl);
-});
+  sentinel.on('.my-div', function(el) {
+    // add an input box
+    var inputEl = document.createElement('input');
+    el.appendChild(inputEl);
+  });
 ```
 
 #### off() - Remove a watch or a callback
@@ -119,45 +117,48 @@ off(cssSelectors[, callbackFn])
 
  * cssSelectors {Array or String} - A single selector string or an array
  * callbackFn {Function} - The callback function you want to remove the watch for (optional)
-```
 
-Use the `off()` method to remove a watch callback:
+Examples:
+
+Remove a watch callback:
  
-```javascript
-function callbackFn() {
-  // add an input box
-  var inputEl = document.createElement('input');
-  el.appendChild(inputEl);
-}
+  function callbackFn() {
+    // add an input box
+    var inputEl = document.createElement('input');
+    el.appendChild(inputEl);
+  }
 
-// add listener
-sentinel.on('.my-div', callbackFn);
+  // add listener
+  sentinel.on('.my-div', callbackFn);
 
-// remove listener
-sentinel.off('.my-div', callbackFn);
-```
+  // remove listener
+  sentinel.off('.my-div', callbackFn);
 
-To remove all callbacks you can leave the `callbackFn` argument blank:
-```javascript
-// add multiple callbacks
-sentinel.on('.my-div', function fn1(el) {});
-sentinel.on('.my-div', function fn2(el) {});
+Remove a watch:
 
-// remove all callbacks
-sentinel.off('.my-div');
+  // add multiple callbacks
+  sentinel.on('.my-div', function fn1(el) {});
+  sentinel.on('.my-div', function fn2(el) {});
+
+  // remove all callbacks
+  sentinel.off('.my-div');
 ```
 
 #### reset() - Remove all watches and callback
 
-The `reset()` method will remove all watches and callbacks from the sentinel library:
+```
+reset()
 
-```javascript
-// add multiple callbacks
-sentinel.on('.my-div1', function fn1(el) {});
-sentinel.on('.my-div2', function fn2(el) {});
+Examples:
 
-// remove all watches and callbacks
-sentinel.reset();
+Remove all watches and callbacks from the sentinel library:
+
+  // add multiple callbacks
+  sentinel.on('.my-div1', function fn1(el) {});
+  sentinel.on('.my-div2', function fn2(el) {});
+
+  // remove all watches and callbacks
+  sentinel.reset();
 ```
 
 ### Async Loading
