@@ -27,6 +27,8 @@ sentinel.on('my-awesome-component', function(el) {
 });
 ```
 
+SentinelJS is 682 bytes (minified + gzipped).
+
 ## Quickstart
 
 ```html
