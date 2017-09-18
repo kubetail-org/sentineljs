@@ -73,10 +73,14 @@ SentinelJS is 682 bytes (minified + gzipped).
 
 ### API
 
-#### on(cssSelectors, callbackFn)
+#### on() - Add a watch for new DOM nodes
 
- * `cssSelectors` - A single selector string or an array
- * `callbackFn` - The callback function
+```
+on(cssSelectors, callbackFn)
+
+ * cssSelectors {Array or String} - A single selector string or an array
+ * callbackFn {Function} - The callback function
+```
 
 Use the `on()` method to set up a watch for new DOM nodes:
  
@@ -98,10 +102,14 @@ sentinel.on('.my-div', function(el) {
 });
 ```
 
-#### off(cssSelectors[, callbackFn])
+#### off() - Remove a watch or a callback
 
- * `cssSelectors` - A single selector string or an array
- * `callbackFn` - The callback function you want to remove the watch for (optional)
+```
+off(cssSelectors[, callbackFn])
+
+ * cssSelectors {Array or String} - A single selector string or an array
+ * callbackFn {Function} - The callback function you want to remove the watch for (optional)
+```
 
 Use the `off()` method to remove a watch callback:
  
@@ -129,7 +137,7 @@ sentinel.on('.my-div', function fn2(el) {});
 sentinel.off('.my-div');
 ```
 
-#### reset()
+#### reset() - Remove all watches and callback
 
 The `reset()` method will remove all watches and callbacks from the sentinel library:
 
