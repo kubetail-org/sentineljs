@@ -94,29 +94,29 @@ on(cssSelectors, callbackFn[, extraAnimation])
 
 Examples:
 
-  Use the `on()` method to set up a watch for new DOM nodes:
+1. Use the `on()` method to set up a watch for new DOM nodes:
  
-  sentinel.on(['.my-div1', '.my-div2'], function(el) {
-    // add an input box
-    var inputEl = document.createElement('input');
-    el.appendChild(inputEl);
-  });
+   sentinel.on(['.my-div1', '.my-div2'], function(el) {
+     // add an input box
+     var inputEl = document.createElement('input');
+     el.appendChild(inputEl);
+   });
 
-  Use single css selector strings:
+2. Use single css selector strings:
 
-  sentinel.on('.my-div', function(el) {
-    // add an input box
-    var inputEl = document.createElement('input');
-    el.appendChild(inputEl);
-  });
+   sentinel.on('.my-div', function(el) {
+     // add an input box
+     var inputEl = document.createElement('input');
+     el.appendChild(inputEl);
+   });
   
-  Trigger extra animations (useful when CSS already has animation-name defined):
+3. Trigger extra animations (useful when CSS already has animation-name defined):
   
-  sentinel.on('.my-div', function(el) {
-    // add an input box
-    var inputEl = document.createElement('input');
-    el.appendChild(inputEl);
-  }, 'anim1, anim2');
+   sentinel.on('.my-div', function(el) {
+     // add an input box
+     var inputEl = document.createElement('input');
+     el.appendChild(inputEl);
+   }, 'anim1, anim2');
 ```
 
 #### off() - Remove a watch or a callback
@@ -129,28 +129,28 @@ off(cssSelectors[, callbackFn])
 
 Examples:
 
-  Remove a watch callback:
+1. Remove a watch callback:
  
-  function callbackFn() {
-    // add an input box
-    var inputEl = document.createElement('input');
-    el.appendChild(inputEl);
-  }
+   function callbackFn() {
+     // add an input box
+     var inputEl = document.createElement('input');
+     el.appendChild(inputEl);
+   }
 
-  // add listener
-  sentinel.on('.my-div', callbackFn);
+   // add listener
+   sentinel.on('.my-div', callbackFn);
 
-  // remove listener
-  sentinel.off('.my-div', callbackFn);
+   // remove listener
+   sentinel.off('.my-div', callbackFn);
 
-  Remove a watch:
+2. Remove a watch:
 
-  // add multiple callbacks
-  sentinel.on('.my-div', function fn1(el) {});
-  sentinel.on('.my-div', function fn2(el) {});
+   // add multiple callbacks
+   sentinel.on('.my-div', function fn1(el) {});
+   sentinel.on('.my-div', function fn2(el) {});
 
-  // remove all callbacks
-  sentinel.off('.my-div');
+   // remove all callbacks
+   sentinel.off('.my-div');
 ```
 
 #### reset() - Remove all watches and callbacks
@@ -160,14 +160,14 @@ reset()
 
 Examples:
 
-  Remove all watches and callbacks from the sentinel library:
+1. Remove all watches and callbacks from the sentinel library:
 
-  // add multiple callbacks
-  sentinel.on('.my-div1', function fn1(el) {});
-  sentinel.on('.my-div2', function fn2(el) {});
+   // add multiple callbacks
+   sentinel.on('.my-div1', function fn1(el) {});
+   sentinel.on('.my-div2', function fn2(el) {});
 
-  // remove all watches and callbacks
-  sentinel.reset();
+   // remove all watches and callbacks
+   sentinel.reset();
 ```
 
 ### Async Loading
