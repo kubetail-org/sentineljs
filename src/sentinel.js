@@ -160,7 +160,7 @@ function animationStartHandler(ev) {
 
 // return singleton object
 return {
-  on: onFn,
-  off: offFn,
+  watch: onFn,
+  ignore: offFn,
   reset: resetFn
 };
