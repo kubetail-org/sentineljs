@@ -93,7 +93,7 @@ on(cssSelectors, callbackFn)
 
 Examples:
 
-Use the `on()` method to set up a watch for new DOM nodes:
+  Use the `on()` method to set up a watch for new DOM nodes:
  
   sentinel.on(['.my-div1', '.my-div2'], function(el) {
     // add an input box
@@ -101,7 +101,7 @@ Use the `on()` method to set up a watch for new DOM nodes:
     el.appendChild(inputEl);
   });
 
-Use single css selector strings:
+  Use single css selector strings:
 
   sentinel.on('.my-div', function(el) {
     // add an input box
@@ -115,12 +115,12 @@ Use single css selector strings:
 ```
 off(cssSelectors[, callbackFn])
 
- * cssSelectors {Array or String} - A single selector string or an array
- * callbackFn {Function} - The callback function you want to remove the watch for (optional)
+  * cssSelectors {Array or String} - A single selector string or an array
+  * callbackFn {Function} - The callback function you want to remove the watch for (optional)
 
 Examples:
 
-Remove a watch callback:
+  Remove a watch callback:
  
   function callbackFn() {
     // add an input box
@@ -134,7 +134,7 @@ Remove a watch callback:
   // remove listener
   sentinel.off('.my-div', callbackFn);
 
-Remove a watch:
+  Remove a watch:
 
   // add multiple callbacks
   sentinel.on('.my-div', function fn1(el) {});
@@ -151,7 +151,7 @@ reset()
 
 Examples:
 
-Remove all watches and callbacks from the sentinel library:
+  Remove all watches and callbacks from the sentinel library:
 
   // add multiple callbacks
   sentinel.on('.my-div1', function fn1(el) {});
