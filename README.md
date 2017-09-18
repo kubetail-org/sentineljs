@@ -86,10 +86,11 @@ SentinelJS is 682 bytes (minified + gzipped).
 #### on() - Add a watch for new DOM nodes
 
 ```
-on(cssSelectors, callbackFn)
+on(cssSelectors, callbackFn[, extraAnimation])
 
   * cssSelectors {Array or String} - A single selector string or an array
   * callbackFn {Function} - The callback function
+  * extraAnimation {String} - Trigger extra animations (e.g. "anim1, anim2") (optional)
 
 Examples:
 
@@ -108,6 +109,14 @@ Examples:
     var inputEl = document.createElement('input');
     el.appendChild(inputEl);
   });
+  
+  Trigger extra animations (useful when CSS already has animation-name defined):
+  
+  sentinel.on('.my-div', function(el) {
+    // add an input box
+    var inputEl = document.createElement('input');
+    el.appendChild(inputEl);
+  }, 'anim1, anim2');
 ```
 
 #### off() - Remove a watch or a callback
