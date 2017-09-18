@@ -76,12 +76,38 @@ Use the `on()` method to set up a watch for new DOM nodes.
  * `cssSelectors` - A single selector string or an array
  * `callbackFn` - The callback function
 
+```javascript
+var sentinel = require('sentinel-js');
+
+sentinel.on(['.my-div1', '.my-div2'], function(el) {
+  // add an input box
+  var inputEl = document.createElement('input');
+  el.appendChild(inputEl);
+});
+```
+
 #### off(cssSelectors[, callbackFn])
 
 Use the `off()` method to remove a watch. If `callbackFn` is emtpy, all watches for the given cssSelector will be removed.
  
  * `cssSelectors` - A single selector string or an array
  * `callbackFn` - The callback function you want to remove the watch for (optional)
+
+```javascript
+var sentinel = require('sentinel-js');
+
+function callbackFn() {
+  // add an input box
+  var inputEl = document.createElement('input');
+  el.appendChild(inputEl);
+}
+
+// add listener
+sentinel.on('.my-div', callbackFn);
+
+// remove listener
+sentinel.off('.my-div', callbackFn);
+```
 
 #### reset()
 
