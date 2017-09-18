@@ -144,7 +144,7 @@ Examples:
   sentinel.off('.my-div');
 ```
 
-#### reset() - Remove all watches and callback
+#### reset() - Remove all watches and callbacks
 
 ```
 reset()
