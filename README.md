@@ -21,7 +21,7 @@ $ npm install --save sentinel-js
 ```javascript
 var sentinel = require('sentinel-js');
 
-sentinel.on('my-custom-element', function(el) {
+sentinel.on('custom-element', function(el) {
   // A new <custom-element> has been detected
   el.innerHTML = 'The sentinel is always watching.';
 });
