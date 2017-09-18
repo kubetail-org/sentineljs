@@ -6,7 +6,17 @@ SentinelJS is a tiny JS library that lets you detect new DOM nodes using CSS sel
 
 ## Introduction
 
-SentinelJS is a tiny JS library that makes it easy to set up watch functions that will notify you anytime a new node is added to the DOM. Using SentinelJS you can create a custom element-like experience where you can define interactive components using pure HTML.
+SentinelJS is a tiny JS library that makes it easy to set up watch functions that notify you anytime a new node is added to the DOM. Using SentinelJS you can detect a new element based on a CSS rule and modify its behavior when it gets added to the DOM. Among other things, you can take advantage of this to implement custom-elements and make other in-place modifications to new DOM elements:
+
+```html
+<script>
+  sentinel.on('custom-element', function(el) {
+    // A new <custom-element> has been detected
+    el.innerHTML = 'The sentinel is always watching.';
+  });
+</script>
+<custom-element></custom-element>
+```
 
 The latest version of SentinelJS can be found in the `dist/` directory in this repository:
  * [sentinel.js](https://raw.githubusercontent.com/muicss/sentineljs/master/dist/sentinel.js)
