@@ -47,7 +47,7 @@ SentinelJS is 682 bytes (minified + gzipped).
         var newEl = document.createElement('div');
         newEl.className = 'my-div';
         document.body.appendChild(newEl);
-      });
+      };
     </script>
   </head>
   <body>
