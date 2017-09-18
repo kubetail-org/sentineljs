@@ -57,7 +57,7 @@ SentinelJS is 682 bytes (minified + gzipped).
 </html>
 ```
 
-[Demo &raquo;](https://jsfiddle.net/muicss/rbqLbjzf/)
+[View Demo &raquo;](https://jsfiddle.net/muicss/rbqLbjzf/)
 
 ## Browser Support
 
