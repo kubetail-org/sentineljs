@@ -1,0 +1,2 @@
+# SentinelJS Changelog
+

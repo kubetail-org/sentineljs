@@ -1,0 +1,31 @@
+{
+  "name": "sentinel-js",
+  "version": "0.0.1",
+  "license": "MIT",
+  "authors": [
+    "Andres Morey <andres@muicss.com>"
+  ],
+  "homepage": "https://github.com/muicss/sentineljs",
+  "description": "JS library that detects new DOM nodes using CSS selectors",
+  "main": [
+    "dist/sentineljs.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/muicss/sentineljs.git"
+  },
+  "keywords": [
+    "dom",
+    "detect",
+    "watch"
+  ],
+  "dependencies": {
+  },
+  "ignore": [
+    "examples",
+    "gulpfile.js",
+    "package.json",
+    "test",
+    "umd-templates"
+  ]
+}
