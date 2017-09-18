@@ -1,4 +1,0 @@
-// define global object
-<%= namespace %> = (function (<%= param %>) {
-<%= contents %>
-})(<%= global %>);
