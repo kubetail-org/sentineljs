@@ -94,15 +94,7 @@ on(cssSelectors, callbackFn[, extraAnimation])
 
 Examples:
 
-1. Use the `on()` method to set up a watch for new DOM nodes:
- 
-   sentinel.on(['.my-div1', '.my-div2'], function(el) {
-     // add an input box
-     var inputEl = document.createElement('input');
-     el.appendChild(inputEl);
-   });
-
-2. Use single css selector strings:
+1. Set up a watch for a single CSS selector:
 
    sentinel.on('.my-div', function(el) {
      // add an input box
@@ -110,7 +102,15 @@ Examples:
      el.appendChild(inputEl);
    });
   
-3. Trigger extra animations (useful when CSS already has animation-name defined):
+2. Set up a watch for multiple CSS selectors:
+ 
+   sentinel.on(['.my-div1', '.my-div2'], function(el) {
+     // add an input box
+     var inputEl = document.createElement('input');
+     el.appendChild(inputEl);
+   });
+
+3. Trigger extra animations:
   
    sentinel.on('.my-div', function(el) {
      // add an input box
@@ -129,19 +129,15 @@ off(cssSelectors[, callbackFn])
 
 Examples:
 
-1. Remove a watch callback:
+1. Remove a callback:
  
-   function callbackFn() {
-     // add an input box
-     var inputEl = document.createElement('input');
-     el.appendChild(inputEl);
-   }
+   function myCallback(el) { /* do something awesome */ }
 
    // add listener
-   sentinel.on('.my-div', callbackFn);
+   sentinel.on('.my-div', myCallback);
 
    // remove listener
-   sentinel.off('.my-div', callbackFn);
+   sentinel.off('.my-div', myCallback);
 
 2. Remove a watch:
 
