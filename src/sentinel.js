@@ -144,16 +144,16 @@ function resetFn() {
  * @param {Event} ev - The DOM event
  */
 function animationStartHandler(ev) {
-  var callbacks = animationCallbacks[ev.animationName] || [],
-      l = callbacks.length;
-
-  // exit if a callback hasn't been registered
-  if (!l) return;
+  var callbacks = animationCallbacks[ev.animationName];
+  
+  // exit if callbacks haven't been registered
+  if (!callbacks) return;
 
   // stop other callbacks from firing
   ev.stopImmediatePropagation();
 
   // iterate through callbacks
+  var l = callbacks.length;
   for (var i=0; i < l; i++) callbacks[i](ev.target);
 }
 

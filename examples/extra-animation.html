@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <style>
+     @keyframes slidein {
+       from {
+         margin-left: 100%;
+         width: 300%; 
+       }
+       
+       to {
+         margin-left: 0%;
+         width: 100%;
+       }
+     }
+    </style>
+    <script src="assets/sentineljs/sentinel.js"></script>
+    <script>
+      // use the `sentinel` global object
+      sentinel.on('.my-div', function(el) {
+        //el.innerHTML = 'The sentinel is always watching.';
+      }, 'slidein');
+
+      // add a new div to the DOM
+      function addDiv() {
+        var newEl = document.createElement('div');
+        newEl.className = 'my-div';
+        newEl.innerHTML = 'test';
+        document.body.appendChild(newEl);
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="addDiv();">Add another DIV</button>
+    <div class="my-div">test</div>
+  </body>
+</html>

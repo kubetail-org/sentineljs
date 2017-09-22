@@ -1,6 +1,6 @@
 {
   "name": "sentinel-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "description": "JS library that detects new DOM nodes using CSS selectors",
   "keywords": [
