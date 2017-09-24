@@ -2,7 +2,7 @@
 
 <img src="https://www.muicss.com/static/images/sentinel.svg" width="250px">
 
-SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (602 bytes).
+SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (653 bytes).
 
 ## Introduction
 
@@ -39,7 +39,7 @@ sentinel.on('custom-element', function(el) {
 });
 ```
 
-SentinelJS is 602 bytes (minified + gzipped).
+SentinelJS is 653 bytes (minified + gzipped).
 
 ## Quickstart
 
@@ -47,7 +47,7 @@ SentinelJS is 602 bytes (minified + gzipped).
 <!doctype html>
 <html>
   <head>
-    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.3/dist/sentinel.min.js"></script>
+    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.4/dist/sentinel.min.js"></script>
     <script>
       // use the `sentinel` global object
       sentinel.on('.my-div', function(el) {
@@ -187,7 +187,7 @@ To make it easy to use SentinelJS asynchronously, the library dispatches a `sent
 <!doctype html>
 <html>
   <head>
-    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.3/dist/sentinel.min.js" async></script>
+    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.4/dist/sentinel.min.js" async></script>
     <script>
       // use the `sentinel-load` event to detect load time
       document.addEventListener('sentinel-load', function() {

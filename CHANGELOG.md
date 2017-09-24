@@ -1,5 +1,9 @@
 # SentinelJS Changelog
 
+## 0.0.4 - September 24, 2017
+
+* Added 'sentinel-load' event on library load
+
 ## 0.0.3 - September 23, 2017
 
 * Removed `extraAnimations` option

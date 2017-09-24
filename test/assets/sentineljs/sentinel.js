@@ -1,6 +1,7 @@
-// define global object
-sentinel = this.sentinel || (function () {
-var isArray = Array.isArray,
+if (!this.sentinel) (function(doc, ev) {
+  // define global object
+  sentinel = (function(){
+    var isArray = Array.isArray,
     selectorToAnimationMap = {},
     animationCallbacks = {},
     styleEl,
@@ -133,4 +134,10 @@ return {
   }
 };
 
-})();
+  })();
+
+  // dispatch load event
+  ev = doc.createEvent('HTMLEvents');
+  ev.initEvent('sentinel-load', false, false);
+  doc.dispatchEvent(ev);
+})(document);
