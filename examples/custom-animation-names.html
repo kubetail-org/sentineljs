@@ -1,24 +1,22 @@
 <html>
   <head>
+    <script src="assets/sentineljs/sentinel.js"></script>
     <style>
      @keyframes slidein {
-       from {
-         margin-left: 100%;
-         width: 300%; 
-       }
-       
-       to {
-         margin-left: 0%;
-         width: 100%;
-       }
+       from {margin-left: 100%;}
+       to {margin-left: 0%;}
+     }
+
+     .my-div {
+       animation-duration: 3s;
+       animation-name: slidein, node-inserted;
      }
     </style>
-    <script src="assets/sentineljs/sentinel.js"></script>
     <script>
       // use the `sentinel` global object
-      sentinel.on('.my-div', function(el) {
-        //el.innerHTML = 'The sentinel is always watching.';
-      }, 'slidein');
+      sentinel.on('!node-inserted', function(el) {
+        el.innerHTML = 'The sentinel is always watching.';
+      });
 
       // add a new div to the DOM
       function addDiv() {

@@ -22,9 +22,14 @@ describe('SentinelJS tests', function() {
     // remove element from DOM
     if (testEl.parentNode) testEl.parentNode.removeChild(testEl);
 
-    // reset setintel
+    // reset setinel
     sentinel.reset();
   });
+
+
+  function getSentinelStyleEl() {
+    return document.getElementsByTagName('style')[0];
+  }
 
 
   describe('on() tests', function() {
@@ -46,7 +51,7 @@ describe('SentinelJS tests', function() {
       sentinel.on('.test-div', function() {});
 
       // check CSS rules
-      var cssRules = document.getElementById('sentineljs').sheet.cssRules;
+      var cssRules = getSentinelStyleEl().sheet.cssRules;
       assert.equal(cssRules.length, 2);
     });
 
@@ -75,32 +80,6 @@ describe('SentinelJS tests', function() {
       document.body.appendChild(testEl);
     });
 
-    
-    it('returns gracefully if callback is null', function() {
-      // try to add listener
-      sentinel.on('.test-div', null);
-
-      // check CSS rules
-      var styleEl = document.getElementById('sentineljs');
-      assert.equal(styleEl, null);
-    });
-
-
-    it('supports extra animation callbacks', function() {
-      sentinel.on('.test-div', function(){}, 'extra-animation');
-
-      // add animation listener
-      var l = ['animationstart', 'mozAnimationStart', 'webkitAnimationStart'];
-      l.forEach(function(event) {
-        document.addEventListener(event, function tempFn(ev) {
-          if (ev.animationName == 'extra-animation') done();
-          document.removeEventListener(event, tempFn);
-        });
-      });
-
-      document.body.appendChild(testEl);
-    });
-
 
     it('supports array of CSS selectors', function(done) {
       // create test element
@@ -123,6 +102,30 @@ describe('SentinelJS tests', function() {
       document.body.appendChild(testEl);
       document.body.appendChild(testEl2);
     });
+
+
+    it('supports custom animation names', function(done) {
+      // add watch
+      sentinel.on('!node-inserted', function(el) {
+        assert.equal(el.className, 'my-div');
+
+        // check CSS rules
+        var cssRules = getSentinelStyleEl().sheet.cssRules;
+        assert.equal(cssRules.length, 2);
+        
+        done();
+      });
+
+      // add css rule
+      var sheet = getSentinelStyleEl().sheet;
+      sheet.insertRule(
+        '.my-div{animation-duration:0.0001s;animation-name:node-inserted;}',
+        sheet.cssRules.length)
+
+      // add element to dom
+      testEl.className = 'my-div';
+      document.body.appendChild(testEl);
+    });
   });
 
 
@@ -134,7 +137,7 @@ describe('SentinelJS tests', function() {
       sentinel.on('.test-div', fn1);
       sentinel.on('.test-div', fn2);
 
-      var cssRules = document.getElementById('sentineljs').sheet.cssRules;
+      var cssRules = getSentinelStyleEl().sheet.cssRules;
 
       // removing first one will keep css rules
       sentinel.off('.test-div', fn1);
@@ -150,10 +153,30 @@ describe('SentinelJS tests', function() {
       sentinel.on('.test-div', function(){});
       sentinel.on('.test-div', function(){});
 
-      var cssRules = document.getElementById('sentineljs').sheet.cssRules;
+      var cssRules = getSentinelStyleEl().sheet.cssRules;
 
       assert.equal(cssRules.length, 2);
       sentinel.off('.test-div');
+      assert.equal(cssRules.length, 0);
+    });
+
+
+    it('removes custom animation name callbacks', function() {
+      function fn1() {}
+      function fn2() {}
+
+      // add watch
+      sentinel.on('!node-inserted', fn1);
+      sentinel.on('!node-inserted', fn2);
+
+      var cssRules = getSentinelStyleEl().sheet.cssRules;
+
+      // removing first one will keep css rules
+      sentinel.off('!node-inserted', fn1);
+      assert.equal(cssRules.length, 1);
+
+      // when queue is empty css rules will be removed
+      sentinel.off('!node-inserted', fn2);
       assert.equal(cssRules.length, 0);
     });
   });

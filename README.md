@@ -2,7 +2,7 @@
 
 <img src="https://www.muicss.com/static/images/sentinel.svg" width="250px">
 
-SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (682 bytes).
+SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (602 bytes).
 
 ## Introduction
 
@@ -18,7 +18,7 @@ SentinelJS is a tiny JavaScript library that makes it easy to set up a watch fun
 <custom-element></custom-element>
 ```
 
-SentinelJS uses dynamically-defined CSS animation rules (`@keyframes`) to hook into browser `animationstart` events when a new node matching a given CSS selector is added to the DOM. In general this should be more performant than using a Mutation Observer to watch the entire `document` tree for changes and iterating through all new child nodes recursively. SentinelJS performs one hash key lookup on calls to the `animationstart` event so the performance overhead is minimal. If you define the `animation-name` property on a CSS rule that overlaps with the selector in your SentinelJS watch function then only one of those animations will be called which could cause unexpected behavior. To get around this you can use the `extraAnimations` argument to SentinelJS to add extra animation names to the SentinelJS CSS.
+SentinelJS uses dynamically-defined CSS animation rules (`@keyframes`) to hook into browser `animationstart` events when a new node matching a given CSS selector is added to the DOM. In general this should be more performant than using a Mutation Observer to watch the entire `document` tree for changes and iterating through all new child nodes recursively. SentinelJS performs one hash key lookup on calls to the `animationstart` event so the performance overhead is minimal. If you define the `animation-name` property on a CSS rule that overlaps with the selector in your SentinelJS watch function then only one of those animations will be called which could cause unexpected behavior. To get around this you can trigger SentinelJS watches from your CSS using custom animation names (see below).
 
 The latest version of SentinelJS can be found in the `dist/` directory in this repository:
  * [sentinel.js](https://raw.githubusercontent.com/muicss/sentineljs/master/dist/sentinel.js)
@@ -39,7 +39,7 @@ sentinel.on('custom-element', function(el) {
 });
 ```
 
-SentinelJS is 682 bytes (minified + gzipped).
+SentinelJS is 602 bytes (minified + gzipped).
 
 ## Quickstart
 
@@ -47,7 +47,7 @@ SentinelJS is 682 bytes (minified + gzipped).
 <!doctype html>
 <html>
   <head>
-    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.2/dist/sentinel.min.js"></script>
+    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.3/dist/sentinel.min.js"></script>
     <script>
       // use the `sentinel` global object
       sentinel.on('.my-div', function(el) {
@@ -88,11 +88,10 @@ SentinelJS is 682 bytes (minified + gzipped).
 #### on() - Add a watch for new DOM nodes
 
 ```
-on(cssSelectors, callbackFn[, extraAnimation])
+on(cssSelectors, callbackFn)
 
   * cssSelectors {Array or String} - A single selector string or an array
   * callbackFn {Function} - The callback function
-  * extraAnimation {String} - Trigger extra animations (e.g. "anim1, anim2") (optional)
 
 Examples:
 
@@ -112,13 +111,25 @@ Examples:
      el.appendChild(inputEl);
    });
 
-3. Trigger extra animations:
-  
-   sentinel.on('.my-div', function(el) {
-     // add an input box
-     var inputEl = document.createElement('input');
-     el.appendChild(inputEl);
-   }, 'anim1, anim2');
+3. Trigger a watch function using custom CSS (using "!"):
+
+   <style>
+     @keyframes slidein {
+       from: {margin-left: 100%}
+       to: {margin-left: 0%;}
+     }
+
+     .my-div {
+       animation-duration: 3s;
+       animation-name: slide-in, node-inserted;
+     }
+   </style>
+   <script>
+     // trigger on "node-inserted" animation event name (using "!")
+     sentinel.on('!node-inserted', function(el) {
+       el.insertHTML = 'The sentinel is always watching.';
+     });
+   </script>
 ```
 
 #### off() - Remove a watch or a callback
@@ -176,7 +187,7 @@ To make it easy to use SentinelJS asynchronously, the library dispatches a `sent
 <!doctype html>
 <html>
   <head>
-    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.2/dist/sentinel.min.js" async></script>
+    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.3/dist/sentinel.min.js" async></script>
     <script>
       // use the `sentinel-load` event to detect load time
       document.addEventListener('sentinel-load', function() {
