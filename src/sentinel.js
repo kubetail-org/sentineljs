@@ -3,8 +3,15 @@ var isArray = Array.isArray,
     animationCallbacks = {},
     styleEl,
     styleSheet,
-    cssRules;
+    cssRules,
+    ANIM = 'sentinel-animation-name';
 
+function matches (elem, selector) {
+  try {
+    return elem.matches(selector);
+  } catch (e) {}
+  return false;
+}
 
 return {
   /**
@@ -22,16 +29,25 @@ return {
 
       // add animationstart event listener
       doc.addEventListener('animationstart', function(ev, callbacks, l, i) {
-        callbacks = animationCallbacks[ev.animationName];
+        callbacks = animationCallbacks[ev.animationName] || [];
+
+        Object.keys(selectorToAnimationMap).forEach(function (selector) {
+          if (matches(ev.target, selector)) {
+            callbacks = callbacks.concat(
+              animationCallbacks[selectorToAnimationMap[selector]] || []
+            );
+          }
+        });
+
+        // iterate through callbacks
+        l = callbacks.length;
 
         // exit if callbacks haven't been registered
-        if (!callbacks) return;
+        if (!l) return;
 
         // stop other callbacks from firing
         ev.stopImmediatePropagation();
 
-        // iterate through callbacks
-        l = callbacks.length;
         for (i=0; i < l; i++) callbacks[i](ev.target);
       }, true);
       
@@ -40,6 +56,13 @@ return {
       head.insertBefore(styleEl, head.firstChild);
       styleSheet = styleEl.sheet;
       cssRules = styleSheet.cssRules;
+
+      styleSheet.insertRule('* {animation-name:' + ANIM +';}', cssRules.length);
+
+      styleSheet.insertRule(
+        '@keyframes ' + ANIM + '{from{transform:none;}to{transform:none;}}',
+        cssRules.length
+      );
     }
     
     // listify argument and add css rules/ cache callbacks
@@ -54,19 +77,12 @@ return {
           selectorToAnimationMap[selector] = animId = 
             isCustomName ? selector.slice(1) : 'sentinel-' + 
             Math.random().toString(16).slice(2);
-          
-          // add keyframe rule
-          cssRules[styleSheet.insertRule(
-            '@keyframes ' + animId + 
-              '{from{transform:none;}to{transform:none;}}',
-            cssRules.length)]
-            ._id = selector;
-            
-          // add selector animation rule
-          if (!isCustomName) {
+
+          if (isCustomName) {
+            // add keyframe rule
             cssRules[styleSheet.insertRule(
-              selector + '{animation-duration:0.0001s;animation-name:' + 
-                animId + ';}',
+              '@keyframes ' + animId +
+              '{from{transform:none;}to{transform:none;}}',
               cssRules.length)]
               ._id = selector;
           }
