@@ -2,7 +2,7 @@
 
 <img src="https://www.muicss.com/static/images/sentinel.svg" width="250px">
 
-SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (653 bytes).
+SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (650 bytes).
 
 ## Introduction
 
@@ -39,7 +39,7 @@ sentinel.on('custom-element', function(el) {
 });
 ```
 
-SentinelJS is 653 bytes (minified + gzipped).
+SentinelJS is 650 bytes (minified + gzipped).
 
 ## Quickstart
 
