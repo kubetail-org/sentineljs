@@ -1,5 +1,9 @@
 # SentinelJS Changelog
 
+## 0.0.5 - August 10, 2018
+
+* Added support for Event object constructor to `sentinel-load` event
+
 ## 0.0.4 - September 24, 2017
 
 * Added 'sentinel-load' event on library load
