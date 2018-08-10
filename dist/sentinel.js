@@ -138,6 +138,7 @@ return {
 
   // dispatch load event
   ev = doc.createEvent('HTMLEvents');
-  ev.initEvent('sentinel-load', false, false);
+  if (ev.initEvent) ev.initEvent('sentinel-load', false, false);
+  else ev = new Event('sentinel-load');
   doc.dispatchEvent(ev);
 })(document);
