@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="assets/sentineljs/sentinel.js"></script>
+    <style>
+      [data-myattribute="myvalue"] {
+        color: red;
+      }
+    </style>
+    <script>
+      // use the `sentinel` global object
+      sentinel.on('[data-myattribute="myvalue"]', function(el) {
+        el.innerHTML = 'The sentinel is always watching.';
+      });
+
+      // add a new div to the DOM
+      function addDiv() {
+        var newEl = document.createElement('div');
+        newEl.setAttribute('data-myattribute', 'myvalue');
+        newEl.innerHTML = 'test';
+        document.body.appendChild(newEl);
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="addDiv();">Add another DIV</button>
+    <div data-myattribute="myvalue">test</div>
+  </body>
+</html>
