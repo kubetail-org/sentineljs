@@ -111,7 +111,7 @@ describe('SentinelJS tests', function() {
 
         // check CSS rules
         var cssRules = getSentinelStyleEl().sheet.cssRules;
-        assert.equal(cssRules.length, 2);
+        assert.equal(cssRules.length, 4);
         
         done();
       });
@@ -124,6 +124,36 @@ describe('SentinelJS tests', function() {
 
       // add element to dom
       testEl.className = 'my-div';
+      document.body.appendChild(testEl);
+    });
+
+    it('detect new nodes with custom animation names', function(done) {
+
+      // add css rule
+      var styleEl = document.createElement('style');
+      document.head.appendChild(styleEl);
+      var sheet = styleEl.sheet;
+      sheet.insertRule(
+        '.my-div2{animation-duration:0.0001s;animation-name:node-inserted2;}',
+        sheet.cssRules.length)
+
+      sheet.insertRule(
+        '@keyframes node-inserted2 {from{transform:none;}to{transform:none;}}',
+        sheet.cssRules.length)
+
+      // add watch
+      sentinel.on('.my-div2', function(el) {
+        assert.equal(el.className, 'my-div2');
+
+        assert.ok(getComputedStyle(el).animationName.indexOf('node-inserted2') >= 0);
+
+        document.head.removeChild(styleEl);
+
+        done();
+      });
+
+      // add element to dom
+      testEl.className = 'my-div2';
       document.body.appendChild(testEl);
     });
   });
@@ -145,7 +175,7 @@ describe('SentinelJS tests', function() {
 
       // when queue is empty css rules will be removed
       sentinel.off('.test-div', fn2);
-      assert.equal(cssRules.length, 0);
+      assert.equal(cssRules.length, 2);
     });
 
 
@@ -157,7 +187,7 @@ describe('SentinelJS tests', function() {
 
       assert.equal(cssRules.length, 2);
       sentinel.off('.test-div');
-      assert.equal(cssRules.length, 0);
+      assert.equal(cssRules.length, 2);
     });
 
 
@@ -173,11 +203,11 @@ describe('SentinelJS tests', function() {
 
       // removing first one will keep css rules
       sentinel.off('!node-inserted', fn1);
-      assert.equal(cssRules.length, 1);
+      assert.equal(cssRules.length, 3);
 
       // when queue is empty css rules will be removed
       sentinel.off('!node-inserted', fn2);
-      assert.equal(cssRules.length, 0);
+      assert.equal(cssRules.length, 2);
     });
   });
 });
