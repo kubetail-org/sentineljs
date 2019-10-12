@@ -126,6 +126,26 @@ describe('SentinelJS tests', function() {
       testEl.className = 'my-div';
       document.body.appendChild(testEl);
     });
+
+
+    it('detects elements with visibility:hidden', function(done) {
+      testEl.style.visibility = 'hidden';
+
+      // add listener
+      sentinel.on('.test-div', function(el) {
+        // test element
+        assert.equal(testEl, el);
+
+        // verify element is hidden
+        var val = getComputedStyle(el).getPropertyValue('visibility');
+        assert.equal(val, 'hidden');
+        
+        done();
+      });
+
+      // add element to DOM
+      document.body.appendChild(testEl);
+    });
   });
 
 

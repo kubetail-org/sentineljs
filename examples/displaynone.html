@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <script src="assets/sentineljs/sentinel.js"></script>
+    <style>
+      .my-div-1 {
+        display: none;
+        height: 20px;
+        border: 1px solid red;
+        margin: 5px 0;
+      }
+
+      .my-div-2 {
+        height: 20px;
+        border: 1px solid blue;
+        margin: 5px 0;
+      } 
+    </style>
+    <script>
+      // use the `sentinel` global object
+      sentinel.on('.my-div-1', function(el) {
+        el.innerHTML = 'my-div-1';
+      });
+
+      sentinel.on('.my-div-2', function(el) {
+        el.innerHTML = 'my-div-2';
+      });
+     
+      // add a new div to the DOM
+      function addDiv() {
+        var el;
+
+        // add instance of my-div-1
+        el = document.createElement('div');
+        el.className = 'my-div-1';
+        document.body.appendChild(el);
+
+        // add instance of my-div-2
+        el = document.createElement('div');
+        el.className = 'my-div-2';
+        el.style.display = 'none';
+        document.body.appendChild(el);        
+      }
+
+      // toggle display:none
+     function toggleDisplay() {
+       var els = document.getElementsByTagName('div'),
+           el,
+           cssVal;
+
+       for (var i=0; i<els.length; i++) {
+         el = els[i];
+         cssVal = getComputedStyle(el, null).getPropertyValue('display');
+
+         // toggle
+         if (cssVal == 'none') el.style.display = 'block';
+         else el.style.display = 'none';
+       }
+     }
+    </script>
+  </head>
+  <body>
+    <button onclick="addDiv();">Add more DIVs</button>
+    <button onclick="toggleDisplay();">Toggle display:none</button>
+    <div>SentinelJS will not detect elements with display:none</div>
+    <div class="my-div-1"></div>
+    <div class="my-div-2" style="display:none;"></div>
+  </body>
+</html>
