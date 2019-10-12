@@ -5,7 +5,7 @@
 SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (650 bytes).
 
 [![Dependency Status](https://david-dm.org/muicss/sentineljs.svg)](https://david-dm.org/muicss/sentineljs)
-[![devDependency Status](https://david-dm.org/muicss/sentineljs/dev-status.svg)](https://david-dm.org/muicss/sentineljs?type=dev)
+[![devDependency Status](https://david-dm.org/muicss/sentineljs/dev-status.svg)](https://david-dm.org/muicss/sentineljs?type=dev) [![Greenkeeper badge](https://badges.greenkeeper.io/muicss/sentineljs.svg)](https://greenkeeper.io/)
 
 ## Introduction
 
