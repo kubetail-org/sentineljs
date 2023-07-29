@@ -18,6 +18,7 @@
     "url": "https://github.com/muicss/sentineljs.git"
   },
   "main": "dist/sentinel.umd.js",
+  "types": "dist/sentinel.d.ts",
   "scripts": {
     "build-all": "gulp build-all",
     "build-dist": "gulp build-dist",
