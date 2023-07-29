@@ -26,7 +26,8 @@ gulp.task('build-dist', gulp.series(
   clean('./dist'),
   gulp.parallel(
     buildJs('./dist'),
-    buildUmdJs('./dist')
+    buildUmdJs('./dist'),
+    buildDTS('./dist')
   )
 ));
 
@@ -91,4 +92,11 @@ function buildUmdJs(dirname) {
       .pipe(rename('sentinel.umd.js'))
       .pipe(gulp.dest(dirname));
   });
+}
+
+function buildDTS(dirname) {
+  return makeTask('build-dts: ' + dirname, function() {
+    return gulp.src('src/sentinel.d.ts')
+      .pipe(gulp.dest(dirname));
+  })
 }
