@@ -36,8 +36,11 @@ return {
       }, true);
       
       // add stylesheet to document
-      styleEl = doc.getElementById("sentinel-css") || doc.createElement('style');
-      head.insertBefore(styleEl, head.firstChild);
+      styleEl = doc.getElementById("sentinel-css");
+      if (!styleEl) {
+        styleEl = doc.createElement('style');
+        head.insertBefore(styleEl, head.firstChild);
+      }
       styleSheet = styleEl.sheet;
       cssRules = styleSheet.cssRules;
     }
