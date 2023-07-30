@@ -36,7 +36,7 @@ return {
       }, true);
       
       // add stylesheet to document
-      styleEl = doc.createElement('style');
+      styleEl = doc.getElementById("sentinel-css") || doc.createElement('style');
       head.insertBefore(styleEl, head.firstChild);
       styleSheet = styleEl.sheet;
       cssRules = styleSheet.cssRules;
