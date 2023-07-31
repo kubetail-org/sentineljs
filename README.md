@@ -2,7 +2,7 @@
 
 <img src="https://www.muicss.com/static/images/sentinel.svg" width="250px">
 
-SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (650 bytes).
+SentinelJS is a tiny JavaScript library that lets you detect new DOM nodes using CSS selectors (668 bytes).
 
 [![Dependency Status](https://david-dm.org/muicss/sentineljs.svg)](https://david-dm.org/muicss/sentineljs)
 [![devDependency Status](https://david-dm.org/muicss/sentineljs/dev-status.svg)](https://david-dm.org/muicss/sentineljs?type=dev)
@@ -42,7 +42,7 @@ sentinel.on('custom-element', function(el) {
 });
 ```
 
-SentinelJS is 650 bytes (minified + gzipped).
+SentinelJS is 668 bytes (minified + gzipped).
 
 ## Quickstart
 
@@ -50,7 +50,7 @@ SentinelJS is 650 bytes (minified + gzipped).
 <!doctype html>
 <html>
   <head>
-    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.5/dist/sentinel.min.js"></script>
+    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.7/dist/sentinel.min.js"></script>
     <script>
       // use the `sentinel` global object
       sentinel.on('.my-div', function(el) {
@@ -202,6 +202,37 @@ To make it easy to use SentinelJS asynchronously, the library dispatches a `sent
     </script>
   </head>
   <body>
+    <div class="my-div"></div>
+  </body>
+</html>
+```
+
+### Custom Stylesheet Placement
+
+By default, SentinelJS will insert a new `<style>` tag into the beginning of the `<head>` of the document. If you want to control the location of SentinelJS's CSS you can define your own hardcoded style tag with `id="sentinel-css"` instead:
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <style id="sentinel-css"></style>
+    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.7/dist/sentinel.min.js"></script>
+    <script>
+      // use the `sentinel` global object
+      sentinel.on('.my-div', function(el) {
+        el.innerHTML = 'The sentinel is always watching.';
+      });
+
+      // add a new div to the DOM
+      function addDiv() {
+        var newEl = document.createElement('div');
+        newEl.className = 'my-div';
+        document.body.appendChild(newEl);
+      };
+    </script>
+  </head>
+  <body>
+    <button onclick="addDiv();">Add another DIV</button>
     <div class="my-div"></div>
   </body>
 </html>
