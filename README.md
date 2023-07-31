@@ -190,7 +190,7 @@ To make it easy to use SentinelJS asynchronously, the library dispatches a `sent
 <!doctype html>
 <html>
   <head>
-    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.5/dist/sentinel.min.js" async></script>
+    <script src="//cdn.rawgit.com/muicss/sentineljs/0.0.7/dist/sentinel.min.js" async></script>
     <script>
       // use the `sentinel-load` event to detect load time
       document.addEventListener('sentinel-load', function() {
