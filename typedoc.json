@@ -1,0 +1,10 @@
+{
+  "entryPoints": ["src/sentinel.js"],
+  "projectDocuments": ["pages/*.md"],
+  "out": "docs",
+  "name": "SentinelJS",
+  "includeVersion": true,
+  "theme": "default",
+  "readme": "README.md",
+  "cleanOutputDir": true
+}

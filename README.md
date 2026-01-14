@@ -21,8 +21,8 @@ SentinelJS is a tiny JavaScript library that makes it easy to set up a watch fun
 SentinelJS uses dynamically-defined CSS animation rules (`@keyframes`) to hook into browser `animationstart` events when a new node matching a given CSS selector is added to the DOM. In general this should be more performant than using a Mutation Observer to watch the entire `document` tree for changes and iterating through all new child nodes recursively. SentinelJS performs one hash key lookup on calls to the `animationstart` event so the performance overhead is minimal. If you define the `animation-name` property on a CSS rule that overlaps with the selector in your SentinelJS watch function then only one of those animations will be called which could cause unexpected behavior. To get around this you can trigger SentinelJS watches from your CSS using custom animation names (see below). Another issue to be aware of is that SentinelJS will not detect elements with CSS style `display:none` (but it will detect elements with `visibility:hidden`).
 
 The latest version of SentinelJS can be found in the `dist/` directory in this repository:
- * [sentinel.js](https://raw.githubusercontent.com/muicss/sentineljs/master/dist/sentinel.js)
- * [sentinel.min.js](https://raw.githubusercontent.com/muicss/sentineljs/master/dist/sentinel.min.js)
+ * [sentinel.js](https://raw.githubusercontent.com/amorey/sentineljs/master/dist/sentinel.js)
+ * [sentinel.min.js](https://raw.githubusercontent.com/amorey/sentineljs/master/dist/sentinel.min.js)
 
 You can also use it as a CJS or AMD module:
 
@@ -72,14 +72,15 @@ SentinelJS is 668 bytes (minified + gzipped).
 [View Demo &raquo;](https://jsfiddle.net/muicss/rbqLbjzf/)
 
 ## Browser Support
+SentinelJS relies on the standard `animationstart` event.
 
- * IE10+
- * Opera 12+
- * Safari 5+
- * Chrome
- * Firefox
- * iOS 6+
- * Android 4.4+
+* **Chrome** (Evergreen)
+* **Firefox** (Evergreen)
+* **Safari** 10+
+* **Edge** (Evergreen)
+* **Internet Explorer 11** (via `dist/sentinel.umd.js`)
+* **iOS** 10+
+* **Android** 5+ (with updated System WebView)
  
 ## Documentation
 
